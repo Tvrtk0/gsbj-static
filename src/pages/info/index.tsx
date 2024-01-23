@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
 
-export default function index() {
+export default function Index() {
   return (
     <main>
       <Header />

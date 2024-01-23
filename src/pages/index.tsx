@@ -7,20 +7,23 @@ import Header from "@/components/Header";
 
 export default function Home({ data }: { data: Data[] }) {
   const [search, setSearch] = useState<undefined | string>(undefined);
-  const [list, setList] = useState(data);
+  const [list, setList] = useState(data.slice(0, 20));
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     if (!search) setList(data);
-    const searchedProducts = data.filter(
-      (d) =>
-        d.product.name
-          .toLowerCase()
-          .includes(search?.toLocaleLowerCase() || "") &&
-        d.product.archive === false
-    );
+    const searchedProducts = data
+      .filter(
+        (d) =>
+          d.product.name
+            .toLowerCase()
+            .includes(search?.toLocaleLowerCase() || "") &&
+          d.product.archive === false
+      )
+      .slice(0, showMore ? -1 : 20);
     // .filter((d) => d.category.id === 1);
     setList(searchedProducts);
-  }, [data, search]);
+  }, [data, search, showMore]);
 
   return (
     <main>
@@ -42,7 +45,16 @@ export default function Home({ data }: { data: Data[] }) {
           })}
         </div>
       </section>
-      {/* <button>Show more</button> */}
+      {!showMore && list.length >= 20 && (
+        <div className="flex justify-center mb-20">
+          <button
+            className="bg-zinc-600 px-4 py-2 rounded-lg hover:bg-zinc-500 text-lg"
+            onClick={() => setShowMore(true)}
+          >
+            Prikaži sve
+          </button>
+        </div>
+      )}
     </main>
   );
 }
