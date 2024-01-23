@@ -7,6 +7,7 @@ const nextConfig = {
   reactStrictMode: true,
   distDir: "dist",
   basePath: isProd ? "/gsbj-static" : "",
+  trailingSlash: false,
 };
 
 module.exports = nextConfig;
