@@ -3,6 +3,7 @@ import { Product as ProductModel } from "@/model/interface";
 import data from "../../../public/gsbj-db.json";
 import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
+import Head from "next/head";
 
 export async function getStaticPaths() {
   const paths = data._embedded.products.map((product: ProductModel) => ({
@@ -22,9 +23,23 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 }
 
 export default function Product({ product }: { product: ProductModel }) {
-  const { name, imageUrl, price, description, archive } = product;
+  const { name, imageUrl, price, description, id } = product;
   return (
     <div className="flex flex-col items-center mb-10">
+      <Head>
+        <title>{name} - Gift Shop Bjelovar</title>
+        <meta name="title" content={name} />
+        <meta name="description" content={description} />
+        <meta name="robots" content="index, follow" />
+        <meta name="og:title" content={name} />
+        <meta name="og:type" content="website" />
+        <meta
+          name="og:url"
+          content={`http://giftshopbjelovar.com/products/${id}`}
+        />
+        <meta name="og:image" content={imageUrl} />
+        <meta name="og:description" content={description} />
+      </Head>
       <Header />
       <Navigation />
 

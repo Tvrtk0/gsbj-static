@@ -4,6 +4,7 @@ import ProductCard from "@/components/ProductCard";
 import { useEffect, useState } from "react";
 import Navigation from "@/components/Navigation";
 import Header from "@/components/Header";
+import Head from "next/head";
 
 export default function Home({ data }: { data: Data[] }) {
   const [search, setSearch] = useState<undefined | string>(undefined);
@@ -27,6 +28,25 @@ export default function Home({ data }: { data: Data[] }) {
 
   return (
     <main>
+      <Head>
+        <meta name="robots" content="index, follow" />
+        <meta name="title" content="Gift Shop Bjelovar - DadoExpres" />
+        <meta
+          name="description"
+          content="Suveniri, noževi, upaljači, sublimacija na keramičke šalice, elektronske cigarete, satovi i razni pokloni!"
+        />
+        <meta name="og:title" content="Gift Shop Bjelovar - DadoExpres" />
+        <meta name="og:type" content="website" />
+        <meta name="og:url" content={`http://giftshopbjelovar.com/`} />
+        <meta
+          name="og:image"
+          content="https://ucarecdn.com/265bf75e-f2c9-4a8d-8039-8da09c8f8015/"
+        />
+        <meta
+          name="og:description"
+          content="Suveniri, noževi, upaljači, sublimacija na keramičke šalice, elektronske cigarete, satovi i razni pokloni!"
+        />
+      </Head>
       <Header />
       <Navigation />
 

@@ -1,9 +1,13 @@
 import Header from "@/components/Header";
 import Navigation from "@/components/Navigation";
+import Head from "next/head";
 
 export default function Index() {
   return (
     <main>
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       <Header />
       <Navigation />
 
